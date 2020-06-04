@@ -1,14 +1,10 @@
-//const http = require('http');
-//const express=require('express')
-//const SocketIo=require('socket.io')
-//var io = require('socket.io')(3000);
-//const io=require('socket.io')(4000)
+
 var app = require('express')();
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mysql = require('mysql');
-//const query=" SELECT  country,indicator,year,avg(measure)  FROM gdb_schema.country,gdb_schema.year,gdb_schema.indicator,gdb_schema.measurement where (country.country='Greece' or country.country='Australia') and (indicator.indicator='GDP (current US$)' or indicator.indicator='Current health expenditure (% of GDP)') and measurement.m_c_id = country.c_id and measurement.m_y_id = year.y_id and measurement.m_i_id = indicator.i_id   group by country,indicator,5_yr order by year,country,indicator;"
+
 
 const con = mysql.createConnection({
   host: "127.0.0.1",
@@ -42,7 +38,7 @@ http.listen(port, function(){
 
 io.on('connection',(socket) =>{
      socket.emit('connected','Connection established.+..')
-     console.log("connected +++ event")
+
      
      socket.on('years',(request)=>{
           q="select * from year;"
@@ -94,13 +90,10 @@ io.on('connection',(socket) =>{
           request=JSON.parse(request);
           
           var notes = []
-          console.log(" request")
-          console.log("select ", request["select"])
-          console.log("from", request["from"])
-          console.log("where ", request["where"])
+
           socket.emit('wait','perimene makh...')
           let query="select "+request["select"]+" from "+request["from"]+" where "+request["where"]
-          console.log('query: ',query)
+
           con.query(query, function (err, result) {
                if (err) throw err;
                values = result;

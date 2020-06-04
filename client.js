@@ -82,11 +82,10 @@ socket.on('answer',dataa =>{
   const promise1 = new Promise((resolve, reject) => {
     
     for(let i=0;i<dataa.length;i++){
-      //if(dataa['avg(measure)']){
-      dataa = dataa.replace("\"avg(measure)\":", "\"measure\":");
-      //}
 
-      //dataa = dataa.replace("\"year\":", "\"letter\":");
+      dataa = dataa.replace("\"avg(measure)\":", "\"measure\":");
+
+
 
       var data2 = JSON.parse(dataa);
     }
@@ -94,12 +93,10 @@ socket.on('answer',dataa =>{
     var prev_year =min_yr
     var prev_country
     list_combs=[]
-    console.log("data2[0] ",data2)
-    //console.log("list_combs[0] ",list_combs[0])
+
     
     
     //list_combs
-        console.log(data2)
         lista={'year':data2[0]['year']}
         for(let l=0;l<combinations;l++){
           lista['indicator'+l]="-"
@@ -112,13 +109,11 @@ socket.on('answer',dataa =>{
         var year_cur=data2[0]['year']
 
         for(let i=0;i<data2.length;i++){
-         //console.log("data2 year ",data2[i]["year"])  
           if(data2[i]["year"]>=min_yr && data2[i]["year"]<=max_yr){
             if(year_cur!=data2[i]['year']){
               pos=0
               year_cur=data2[i]['year']
               list_combs.push(lista)
-              console.log(data2[i]['year'])
               lista={'year':data2[i]['year']}
               for(let l=0;l<combinations;l++){
                 lista['indicator'+l]="-"
@@ -126,15 +121,7 @@ socket.on('answer',dataa =>{
                 lista['measure'+l]=0
               }
             }
-            /*if(country_cur!=data2[i]['country'] || indicator_cur!=data2[i]['indicator'] ){
-                
-                list_combs.push(lista)
-                
-                country_cur=data2[i]['country']
-                indicator_cur=data2[i]['indicator']
 
-                
-              }*/
              
             for(let q=0;q<combos.length;q++){
               
@@ -145,35 +132,22 @@ socket.on('answer',dataa =>{
               }
 
             }
-            //lista.push(data2[i])
+
             
                 
 
             }
           }
-          //list_combs.push(lista)
-          //list_combs.push(lista)
+
         
         list_combs[list_combs.length]=lista
-        //k++
+
       
       
       
-    
-    console.log("O list_comb telikossss!! ",list_combs)
-    for(let g=0;g<list_combs.length;g++){
-      console.log('year ',list_combs[g].year," country0 ",list_combs[g].country0," indicator0 ",list_combs[g].indicator0," mesure0 ",list_combs[g].measure0)
-      console.log('year ',list_combs[g].year," country1 ",list_combs[g].country1," indicator1 ",list_combs[g].indicator1," mesure1 ",list_combs[g].measure1)
-      console.log('year ',list_combs[g].year," country2 ",list_combs[g].country2," indicator2 ",list_combs[g].indicator2," mesure2 ",list_combs[g].measure2)
-      console.log('year ',list_combs[g].year," country3 ",list_combs[g].country3," indicator3 ",list_combs[g].indicator3," mesure3 ",list_combs[g].measure3)
-      console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-    }
-    
-    console.log("Data Ready<>!")
-    //console.log(data.length);
-  
+
     createGraph(choice_of_graph)
-    //multibar()
+
   })
   function createGraph(choice)  {
     var id_=0
@@ -219,15 +193,15 @@ var yAxis = d3.svg.axis()
 })
 
 button.addEventListener('click',()=>{
-  
+    closeNav();
     if ($("svg").length > 0) {
       $("svg").remove();
     }
-  console.log('me pathes!')
+ 
 
   min_yr=document.querySelector("#price-min").value
   max_yr=document.querySelector("#price-max").value
-  console.log("min : ",min_yr," max : ",max_yr)
+ 
   group_by=group_yr
   choice_of_graph=isgraph
   combinations=selected_indicators.length * selected_countries.length
@@ -235,15 +209,13 @@ button.addEventListener('click',()=>{
   q_indicators=[]
   cou=[]
   ind=[]
-  console.log('selected_countries.length',selected_countries.length)
-  console.log('selected_indicators.length',selected_indicators.length)
   for (let i=0;i<selected_countries.length;i++){
     for (let j=0;j<selected_indicators.length;j++){
      
       combos.push({'country':selected_countries[i],'indicator':selected_indicators[j]})
     }
   }
-  console.log(combos)
+
   
 
   country_string=""
@@ -259,10 +231,7 @@ button.addEventListener('click',()=>{
     }
   
   }
-  //country_string=q_countries.toString()
-  //indicator_string=q_indicators.toString()
 
-  console.log("country_string ",country_string)
   
   for(let i=0;i<selected_indicators.length;i++){
     
@@ -276,16 +245,13 @@ button.addEventListener('click',()=>{
    
   }
   
-  console.log("indicator_string ",indicator_string)
+
   
 
   
-  console.log("xwres ",q_countries.length)
-  console.log("indicators ",q_indicators.length)
+
   if(q_indicators.length==0 || q_countries.length==0 || !( 1<=choice_of_graph<=3 ) ){
-    console.log("q_indicators.length is "+q_indicators.length)
-    console.log("q_countries.length is "+q_countries.length)
-    console.log("choice_of_graph is "+choice_of_graph)
+
     window.alert("You have not select all fields!")
     return;
   }
@@ -309,31 +275,8 @@ button.addEventListener('click',()=>{
   socket.emit('request',JSON.stringify(sql_query))
   
   
-  console.log("xwres ",q_countries.length)
-  console.log("indicators ",q_indicators.length)
+
   var meas=0.0
-  /*for(let i=0;i<q_countries.length;i++){
-      for(let k=0;k<q_indicators.length;k++){
-        lis=[]
-        
-        /*yr=min_yr
-        console.log('##############')
-        for(let j=1960;j<=max_yr;j+=group_by){
-           if(j>=min_yr){
-            console.log("etos ",j)
-            let xwra=q_countries[i]
-            //lis.push({'year':j,'country':""+q_countries[k],'indicator':""+q_indicators[k],'measure':meas})
-            console.log('bbhkkaaa')
-           }
-        }
-        list_combs.push([])
-      }
-      console.log('telos to ',i)
-      
-    
-  }*/
-  
-  console.log('ETOIMA ESTALH')
 
 
   
@@ -344,7 +287,7 @@ function indicators_choice(i){
   }else{
     selected_indicators=arrayRemove(selected_indicators,indicator_list[i])
   }
-  console.log(selected_indicators)
+
 
   
 
@@ -410,12 +353,12 @@ function clone(selector) {
     }
   }
 function tipwithId(id_){
-  console.log(id_)
+
   return d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    console.log(d)
+   
     return "<strong>measure:</strong> <span style='color:blue'>"+d[`measure${id_}`] +"    "+"<strong>indicators:</strong> <span style='color:red'>" + d['indicator'+id_]  +"    "+"<strong>Country:</strong>"+ "<span style='color:blue'>"+d[`country${id_}`]+"</span>"+"    "+"<strong>Year:</strong>"+ "<span style='color:orange'>"+d['year']+"</span>";
   })
 }
@@ -426,7 +369,7 @@ function arrayRemove(arr, value) { return arr.filter(function(ele){ return ele !
 
 function barChart(width, height, margin, list_combs, x, y, xAxis, yAxis)
 {
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select("#main").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
 .append("g")
@@ -440,14 +383,15 @@ y.domain([0, d3.max(list_combs, function(d) {
       max =d['measure'+i];
     }
   }
-  console.log('max   ',max)
+
   return max
 })]);
 
 svg.append("g")
-    .attr("class", "x axis")
+    .attr("class", "y axis")
     .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+    .call(xAxis)
+  
 
 svg.append("g")
     .attr("class", "y axis")
@@ -457,13 +401,13 @@ svg.append("g")
     .attr("y", 6)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
-    .text("Frequency");
+    .text("Percentage %");
 
 bars=svg.selectAll(".bar")
     .data(list_combs)
   .enter()
 
-  console.log(q_countries.length*q_indicators.length)
+
   for (id_=0;id_ < q_countries.length*q_indicators.length;id_++){
 
       
@@ -478,7 +422,7 @@ bars=svg.selectAll(".bar")
     .attr("width", x.rangeBand()/combinations)
     .attr("y", function(d) { 
 
-      console.log('bar'+id_,d['year'],d['country'+id_],d['measure'+id_],d['indicator'+id_])
+     
 
       let val=y(d['measure'+id_])
       
@@ -493,7 +437,7 @@ bars=svg.selectAll(".bar")
           val=0
       }
       val=parseFloat(y(d['measure'+id_])) || 0;
-        //console.log(d['measure'+id_],'measure'+id_,val)
+
         return  height - val; })
         .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
@@ -511,51 +455,50 @@ bars=svg.selectAll(".bar")
 function Multiline(width, height, margin, list_combs){
   id_=0
   var	margin = {top: 30, right: 20, bottom: 30, left: 50}
-	//width = width - margin.left - margin.right,
-	//height = height - margin.top - margin.bottom;
- 
+
 
 
 // Set the ranges
-var	x = d3.scale.linear().range([0, width]);
+var	x = d3.scale.linear().range([0, width+1]);
+
+
 var	y = d3.scale.linear().range([height, 0]);
 
 // Define the axes
 var	xAxis = d3.svg.axis().scale(x)
 	.orient("bottom");
- 
 var	yAxis = d3.svg.axis().scale(y)
 	.orient("left");
- 
 // Define the line
 
     
 // Adds the svg canvas
-var	svg = d3.select("body")
+var	svg = d3.select("#main")
 	.append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 	.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     var max =0
-    //x.domain(list_combs.map(function(d) { return d.year; }));
+
+    x.domain(list_combs.map(function(d) {return d.year; }));
     y.domain([0, d3.max(list_combs, function(d) { 
       for(let i =0;i<list_combs.length;i++){
         if(max<d['measure'+i]){
           max =d['measure'+i];
         }
       }
-      console.log('max   ',max)
+
       return max
     })]);
     var line = svg.selectAll(".line")
       .data(list_combs)
       .enter()
 // Get the data
-console.log(list_combs)
+
   for (id_=0;id_ < q_countries.length*q_indicators.length;id_++){
     var tip = tipwithId(id_)
-    console.log(tip)
+
     var	valueline = d3.svg.line()
       .x(function(d) { return x(d.year); })
       .y(function(d) { return y(d['measure'+id_]); });
@@ -567,7 +510,7 @@ console.log(list_combs)
       line.append("rect").attr("class", 'line'+id_)
       // Scale the range of the data
        x.domain(d3.extent(list_combs, function(d) { return d.year; }));
-      //y.domain([0, d3.max(list_combs, function(d) { return d['measure'+id_]; })]);
+
     
       // Add the valueline path.
       svg.append("path")	
@@ -578,7 +521,7 @@ console.log(list_combs)
         svg.call(tip);
       // Add the X Axis
       svg.append("g")		
-        .attr("class", "x axis")
+        .attr("class", "y axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
     
@@ -612,21 +555,19 @@ x = d3.scale.linear().range([0, width]) // value -> display
     
     x.domain([0, d3.max(list_combs, function(d) { 
       for(let i =0;i<list_combs.length;i++){
-        console.log('d[measure0]',d['measure0'])
+
         if(maxx<d['measure0']){
           maxx =d['measure0'];
           
         }
       }return maxx
     })]);
-    console.log('maxx',maxx)
+
 var xValue = function(d) { return d.measure0;}, // data -> value
    
     
   
     xMap = function(d) { 
-      console.log("%%%%#@@@@ ", x(d.measure0))
-      console.log("%%%%#22@@@@ ", d.measure0)
       return x(d.measure0);}, // data -> display
     xAxis = d3.svg.axis().scale(x).orient("bottom");
 
@@ -640,31 +581,29 @@ y.domain([0, d3.max(list_combs, function(d) {
   }return maxy
   
 })]);
-console.log('maxy',maxy)
 var yValue = function(d) { return d.measure1;}, // data -> value
     
     yMap = function(d) { 
-      console.log("%%%%#@@@@ ", y(d.measure1))
-      console.log("%%%%#22@@@@ ", d.measure1)
+
       return y(d.measure1 );}, // data -> display
     yAxis = d3.svg.axis().scale(y).orient("left");
 
 // setup fill color
-var cValue = function(d) { return color(1,1,0);},//d.
+var cValue = function(d) { return color(1,1,0);},
     color = d3.scale.category10();
 
-var cValue1 = function(d) { return color(1,0,0);},//d.
+var cValue1 = function(d) { return color(1,0,0);},
     color = d3.scale.category10();
 
 // add the graph canvas to the body of the webpage
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#main").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // add the tooltip area to the webpage
-var tooltip = d3.select("body").append("div")
+var tooltip = d3.select("#main").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
@@ -673,12 +612,10 @@ var tooltip = d3.select("body").append("div")
 
   // don't want dots overlapping axis, so add in buffer to data domain
   
-  //xScale.domain([d3.min(data.measure0, xValue)-1, d3.max(data.measure0, xValue)+1]);
-  //yScale.domain([d3.min(data.measure1, yValue)-1, d3.max(data.measure1, yValue)+1]);
 
   // x-axis
   svg.append("g")
-      .attr("class", "x axis")
+      .attr("class", "y axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
     .append("text")
@@ -687,7 +624,7 @@ var tooltip = d3.select("body").append("div")
       .attr("y", -6)
       .style("text-anchor", "end")
       .text(list_combs[list_combs.length -1]["indicator0"]);
-      console.log('list_combs[indicator1]',list_combs["indicator0"])
+      
   // y-axis
   svg.append("g")
       .attr("class", "y axis")
@@ -699,8 +636,7 @@ var tooltip = d3.select("body").append("div")
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text(list_combs[list_combs.length -1]["indicator1"]);
-    console.log('list_combs',list_combs)
-    console.log('list_combs[indicator1]',list_combs[list_combs.length -1]["indicator1"])
+  
 
   // draw dots
   svg.selectAll(".dot")
@@ -710,13 +646,13 @@ var tooltip = d3.select("body").append("div")
       .attr("r", 3.5)
       .attr("cx", xMap)
       .attr("cy", yMap)
-      .style("fill", function(d) { return color(cValue1(d));}) //return color(cValue(d));}) 
+      .style("fill", function(d) { return color(cValue1(d));}) 
       .on("mouseover", function(d) {
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
           tooltip.html(d.indicator0 +","+d.indicator1 +","+d.country0+ "<br/> (" + xValue(d.measure0) 
-	        + ", " + yValue(d.measure1) + ")")//color(cValue1(d))
+	        + ", " + yValue(d.measure1) + ")")
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
@@ -734,7 +670,7 @@ var tooltip = d3.select("body").append("div")
       .attr("r", 3.5)
       .attr("cx", xMap)
       .attr("cy", yMap)
-      .style("fill", function(d) { color(cValue(d));}) //return color(cValue(d));}) 
+      .style("fill", function(d) { color(cValue(d));})  
       .on("mouseover", function(d) {
           tooltip.transition()
                .duration(200)
