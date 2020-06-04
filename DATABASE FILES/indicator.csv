@@ -1,0 +1,5 @@
+i_id,indicator_name,i_code
+0,GDP (current US$),NY.GDP.MKTP.CD
+1,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS
+2,Military expenditure (% of GDP),MS.MIL.XPND.GD.ZS
+3,Government expenditure on educationGovernment expenditure on education,SE.XPD.TOTL.GD.ZS
