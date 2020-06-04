@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+   <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+    <title>Document!</title>
+</head>
+<body style="position: absolute; bottom: 0px; top: 0px; left: 0px; right: 0px;">
+  
+    <script src="http://127.0.0.1:3000/socket.io/socket.io.js"> </script>
+    
+    
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src=https://d3js.org/d3.v3.min.js></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script defer src="client.js"></script>
+
+    
+    <div id="mySidenav" class="sidenav" >
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>  
+    <div data-role="page" style="height: 150px; width: 280px" >
+        <div data-role="header">
+          <h1>Year Range</h1>
+        </div>
+      
+        <div data-role="main" class="ui-content">
+          <form method="post" >
+            <div data-role="rangeslider">
+              <label for="price-min">Price:</label>
+              <input type="range" name="price-min" id="price-min" value="" min="1960" max="2019">
+              <label for="price-max">Price:</label>
+              <input type="range" name="price-max" id="price-max" value="" min="1960" max="2019">
+            </div>
+            </form >
+                
+            
+            
+      </div>
+        
+        
+
+        <div>
+          <form>
+            <div class="multiselect">
+              <div class="selectBox" onclick="showCheckboxes('checkboxes')">
+                <select style="display: none;">
+                  <option>choose countries</option>
+                </select>
+                <div class="overSelect"></div>
+              </div>
+              <div style="display: none;" id="checkboxes">
+                
+              </div>
+            </div>
+          </form>
+        </div>
+        <div>
+          <form>
+            <div class="multiselect">
+              <div class="selectBox" onclick="showCheckboxes('checkboxes_indicator')">
+                <select style="display: none;">
+                  <option>choose indicators</option>
+                </select>
+                <div class="overSelect"></div>
+              </div>
+              <div style="display: none;" id="checkboxes_indicator">
+                
+                
+              </div>
+            </div>
+          </form>
+        </div>
+          
+    
+
+    <div>
+        <div>
+            <form id="group">
+                <p>Please select a group way:</p>
+                <input type="radio" onclick="group_choice(1)" id="byyr" name="grouped" value="byyr">
+                <label for="byyr">by year</label>
+                <input type="radio" onclick="group_choice(5)" id="by5" name="grouped" value="by5">
+                <label for="by5">by 5 years</label>
+                <input type="radio" onclick="group_choice(10)" id="by10" name="grouped" value="by10">
+                <label for="by10">by 10 years</label>
+                <input type="radio" onclick="group_choice(20)" id="by20" name="grouped" value="by20">
+                <label for="by20">by 20 years</label>
+                
+            </form>  
+            <form >
+                <p>Please select graph:</p>
+                <input type="radio"  onclick="graph_choice(1)" id="timeline" name="graphh" value="timeline">
+                <label for="timeline">timeline</label>
+                <input type="radio" onclick="graph_choice(2)" id="bar" name="graphh" value="bar">
+                <label for="bar">bar chart</label>
+                <input type="radio" onclick="graph_choice(3)" id="scatter" name="graphh" value="scatter">
+                <label for="scatter">scatter plot</label>
+                 
+                
+              </form>
+                
+              
+        </div>
+
+    </div>
+        
+           
+             
+             
+        
+    
+      
+
+    
+    <p id="message-container"></p>
+    <button class="btn btn-primary" id="button-id">show data!</button>
+</div>
+
+
+
+</div>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+<script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "335px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
+
+  <svg style="position: inherit; "></svg>
+
+  <script src="jquery.ajaxchimp.min.js" ></script>
+			<script src="jquery.magnific-popup.min.js" ></script>
+    		<script src="jquery.tabs.min.js" ></script>
+			<script src="jquery.nice-select.min.js" ></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
