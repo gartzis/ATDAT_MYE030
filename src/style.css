@@ -1,0 +1,300 @@
+body {
+    font: 10px sans-serif;
+  }
+  
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: geometricPrecision;
+  }
+  .line{
+    fill: none;
+    stroke: grey;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+
+  }
+  .line:hover {
+    fill: none;
+    stroke: grey;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+  }
+  .line0{
+    fill: none;
+    stroke: blue;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+
+  }
+  .line0:hover {
+    fill: none;
+    stroke: grey;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+  }
+  .line1{
+    fill: none;
+    stroke: red;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+
+  }
+  .line1:hover {
+    fill: none;
+    stroke: grey;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+  }
+  .line2{
+    fill: none;
+    stroke: rgb(0, 255, 242);
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+
+  }
+  .line2:hover {
+    fill: none;
+    stroke: grey;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+  }  
+  .line3{
+    fill: none;
+    stroke: rgb(9, 255, 0);
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+
+  }
+  .line3:hover {
+    fill: none;
+    stroke: grey;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+  }  
+  .line4{
+    fill: none;
+    stroke: rgb(255, 238, 0);
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+
+  }
+  .line4:hover {
+    fill: none;
+    stroke: grey;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+  }  
+  .line5{
+    fill: none;
+    stroke: rgb(247, 0, 255);
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+
+  }
+  .line5:hover {
+    fill: none;
+    stroke: grey;
+    stroke-width: 3;
+    shape-rendering: geometricPrecision;
+    ;
+  }
+  .bar {
+    fill: orange;
+    width: 30;
+  }
+
+  .bar:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar0 {
+    fill: rgb(0, 183, 255);
+    width: 30;
+  }
+
+  .bar0:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar1 {
+    fill: rgb(9, 255, 0);
+    width: 30;
+  }
+
+  .bar1:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar2 {
+    fill: rgb(255, 251, 0);
+    width: 30;
+  }
+
+  .bar2:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar3 {
+    fill: rgb(255, 0, 212);
+    width: 30;
+  }
+
+  .bar3:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar4 {
+    fill: orange;
+    width: 30;
+  }
+
+  .bar4:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar5 {
+    fill: rgb(255, 0, 157);
+    width: 30;
+  }
+
+  .bar5:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar6 {
+    fill: rgb(88, 156, 91);
+    width: 30;
+  }
+
+  .bar6:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar7 {
+    fill: rgb(0, 0, 0);
+    width: 30;
+  }
+
+  .bar7:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar8 {
+    fill: rgb(200, 255, 0);
+    width: 30;
+  }
+
+  .bar8:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+  .bar9 {
+    fill: rgba(210, 157, 226, 0.445);
+    width: 30;
+  }
+
+  .bar9:hover {
+    fill: rgb(255, 0, 0) ;
+    width: 30;
+  }
+
+  
+  .x.axis path {
+    display: none;
+  }
+  
+  .d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+  }
+  
+  /* Creates a small triangle extender for the tooltip */
+  .d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+  }
+  
+  .multiselect {
+    width: 200px;
+  }
+  
+  .selectBox {
+    position: relative;
+  }
+  
+  .selectBox select {
+    width: 100%;
+    font-weight: bold;
+  }
+  
+  .overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  
+  #checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+  }
+  
+  #checkboxes label {
+    display: block;
+  }
+  
+  #checkboxes label:hover {
+    background-color: #1e90ff;
+  }
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    transition: 0.5s;
+    padding-top: 60px;
+    overflow-y: scroll;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
